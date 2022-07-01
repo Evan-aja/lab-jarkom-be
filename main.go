@@ -1,7 +1,7 @@
 package main
 
 import (
-	database "lab-jarkom-be/Database"
+	"lab-jarkom-be/Database"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -9,7 +9,7 @@ import (
 
 func main() {
 	//Database
-	db := database.Open()
+	db := Database.Open()
 	if db != nil {
 		println("nice")
 	}
@@ -29,7 +29,7 @@ func main() {
 	})
 
 	//Route taruh disini
-	r.GET("/", func(c *gin.Context) {
+	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "Welcome to Lab-JarKom",
 			"success": true,

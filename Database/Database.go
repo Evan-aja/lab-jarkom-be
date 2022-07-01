@@ -1,7 +1,8 @@
-package database
+package Database
 
 import (
 	"fmt"
+	"lab-jarkom-be/User"
 	"log"
 	"os"
 
@@ -21,6 +22,9 @@ func Open() *gorm.DB {
 		os.Getenv("DB_NAME"))),
 		&gorm.Config{})
 	if err != nil {
+		log.Fatal(err.Error())
+	}
+	if err = db.AutoMigrate(&User.User{}); err != nil {
 		log.Fatal(err.Error())
 	}
 	return db
